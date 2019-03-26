@@ -1,9 +1,17 @@
 package com.codeoftheweb.salvo;
 
 import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import javax.persistence.*;
 import java.util.Set;
+
+import java.util.List;
+import static java.util.stream.Collectors.toList;
+
 
 @Entity
 public class Player {
@@ -26,6 +34,7 @@ public class Player {
 
     public Player(String email) {
         username = email;
+        System.out.println("player created " + this );
     }
 
     public String getFirstName() {
@@ -55,6 +64,10 @@ public class Player {
     public void addGamePlayer(GamePlayer gameplayer) {
         gameplayer.setPlayer(this);
         gameplayers.add(gameplayer);
+    }
+
+    public List<Game> getGames() {
+        return gameplayers.stream().map(sub -> sub.getGame()).collect(toList()); // ???
     }
 
 }

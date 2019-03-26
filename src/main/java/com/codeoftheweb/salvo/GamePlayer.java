@@ -30,12 +30,18 @@ public class GamePlayer {
 
     private Date creationDate;
 
+    public GamePlayer(){}
+
     public GamePlayer(Game game, Player player) {
         this.game = game;
         this.player = player;
+        System.out.println("GamePlayer created " + player + " " + game );
     }
 
+    public Game getGame(){ return game; }
     public void setGame(Game game){ this.game = game; }
+
+    public Player getPlayer(){ return player; }
     public void setPlayer(Player player){ this.player = player; }
 
 

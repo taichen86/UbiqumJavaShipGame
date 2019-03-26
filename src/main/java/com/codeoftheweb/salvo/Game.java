@@ -4,7 +4,11 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Set;
+
+import static java.util.stream.Collectors.toList;
 
 @Entity
 public class Game {
@@ -29,6 +33,17 @@ public class Game {
         System.out.println(getCreationDate().toString());
     }
 
+    public Game(String dateString){
+
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        try{
+            creationDate = format.parse( dateString );
+            System.out.println("Successfully Parsed Date " + creationDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public Date getCreationDate() {
         return creationDate;
     }
@@ -40,6 +55,10 @@ public class Game {
     public void addGamePlayer(GamePlayer gameplayer) {
         gameplayer.setGame(this);
         gameplayers.add(gameplayer);
+    }
+
+    public List<Player> getPlayers() {
+        return gameplayers.stream().map(sub -> sub.getPlayer()).collect(toList()); // ???
     }
 
 }
