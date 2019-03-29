@@ -44,6 +44,7 @@ public class Game {
         }
     }
 
+    public long getGameID(){ return id; }
     public Date getCreationDate() {
         return creationDate;
     }
@@ -57,8 +58,10 @@ public class Game {
         gameplayers.add(gameplayer);
     }
 
+    public Set<GamePlayer> getGamePlayers(){ return gameplayers; }
+
     public List<Player> getPlayers() {
-        return gameplayers.stream().map(sub -> sub.getPlayer()).collect(toList()); // ???
+        return gameplayers.stream().map(gp -> gp.getPlayer()).collect(toList()); // ???
     }
 
 }

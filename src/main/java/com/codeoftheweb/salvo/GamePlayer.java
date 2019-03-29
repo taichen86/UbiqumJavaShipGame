@@ -38,12 +38,13 @@ public class GamePlayer {
         System.out.println("GamePlayer created " + player + " " + game );
     }
 
+    public long getGamePlayerID(){ return id; }
+
     public Game getGame(){ return game; }
     public void setGame(Game game){ this.game = game; }
 
     public Player getPlayer(){ return player; }
     public void setPlayer(Player player){ this.player = player; }
-
 
 
 

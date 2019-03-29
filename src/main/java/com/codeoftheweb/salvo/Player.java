@@ -1,5 +1,6 @@
 package com.codeoftheweb.salvo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,6 +38,8 @@ public class Player {
         System.out.println("player created " + this );
     }
 
+    public long getPlayerID(){ return id; }
+
     public String getFirstName() {
         return firstName;
     }
@@ -66,6 +69,7 @@ public class Player {
         gameplayers.add(gameplayer);
     }
 
+    @JsonIgnore
     public List<Game> getGames() {
         return gameplayers.stream().map(sub -> sub.getGame()).collect(toList()); // ???
     }
