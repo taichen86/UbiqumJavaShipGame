@@ -19,7 +19,19 @@ public class Ship {
     private long id;
     public long getShipID(){ return id; }
 
-    private String type;
+    enum Type {
+        CARRIER,
+        BATTLESHIP,
+        SUBMARINE,
+        DESTROYER,
+        PATROL_BOAT
+    };
+
+    private Type type;
+    public void setType(Type type){
+        this.type = type;
+    }
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="gameplayer_id")
@@ -31,9 +43,14 @@ public class Ship {
     @ElementCollection
     @Column(name="location")
     private List<String> locations = new ArrayList<String>();
+    public List<String> getLocations(){ return locations; }
+    public void setLocations(List<String> locations){
+        this.locations = locations;
+    }
 
 
     public void Ship(){ };
+
 
 
 }

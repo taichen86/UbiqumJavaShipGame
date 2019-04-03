@@ -25,7 +25,7 @@ public class GamePlayer {
     private Game game;
 
     @OneToMany(mappedBy="gameplayer", fetch=FetchType.EAGER)
-    Set<Ship> ships = new HashSet<Ship>();
+    private Set<Ship> ships = new HashSet<Ship>();
 
 
     private Date creationDate;
