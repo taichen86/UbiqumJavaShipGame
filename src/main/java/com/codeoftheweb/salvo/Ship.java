@@ -32,6 +32,8 @@ public class Ship {
         this.type = type;
     }
 
+    public String getType(){ return type.name(); }
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="gameplayer_id")
