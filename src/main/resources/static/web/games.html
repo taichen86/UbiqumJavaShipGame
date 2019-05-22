@@ -22,7 +22,7 @@
             </th>
             <tr v-for="row in rows">
               <th>{{row}}</th>
-              <td v-for="col in columns"></td>
+              <td v-bind:id="col+row" v-for="col in columns"></td>
             </tr>
           </table>
         

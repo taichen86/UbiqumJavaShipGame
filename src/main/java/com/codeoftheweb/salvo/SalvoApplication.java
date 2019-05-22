@@ -85,6 +85,8 @@ public class SalvoApplication {
 
 
 			GamePlayer gp2 = new GamePlayer( g1, p2 );
+			gameplayerrepo.save( gp2 );
+
 
 			Ship ship04 = new Ship();
 			ship04.setType(Ship.Type.DESTROYER);
@@ -98,7 +100,6 @@ public class SalvoApplication {
 			shiprepo.save( ship05 );
 			ship05.setGamePlayer( gp2 );
 
-			gameplayerrepo.save( gp2 );
 
 
 			GamePlayer gp3 = new GamePlayer( g2, p1 );

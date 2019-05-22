@@ -30,7 +30,8 @@ var vm = new Vue({
         rows: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         columns: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
         gameplayerID: 0,
-        gameplayers: []
+        gameplayers: [],
+        ships: []
     }
 })
 
@@ -60,7 +61,13 @@ function getGameView()
         data.gameplayers.forEach( gp => {
             console.log( gp );
             vm.gameplayers.push( gp );
-         });       
+         });      
+         data.ships.forEach( ship => {
+             console.log( ship );
+             vm.ships.push( ship );
+         }); 
+         console.log( vm.ships );
+         colorInShipCells();
 
 
     }).catch( function( error ){
@@ -68,7 +75,15 @@ function getGameView()
     })
 }
 
-
+function colorInShipCells(){
+    console.log( "color in ship cells " + vm.ships );
+    vm.ships.forEach( ship => {
+        ship.locations.forEach( location => {
+            console.log( "location: " + location );
+            document.getElementById( location ).style.backgroundColor = "blue";
+        });
+    });
+}
 
 function paramObj(search) {
     var obj = {};
