@@ -80,9 +80,6 @@ public class SalvoApplication {
 			shiprepo.save( ship03 );
 
 
-//			gameplayerrepo.save( gp1 );
-
-
 
 			GamePlayer gp2 = new GamePlayer( g1, p2 );
 			gameplayerrepo.save( gp2 );
@@ -91,144 +88,153 @@ public class SalvoApplication {
 			Ship ship04 = new Ship();
 			ship04.setType(Ship.Type.DESTROYER);
 			ship04.setLocations( Arrays.asList( new String[] {"B5", "C5", "D5"}));
-			shiprepo.save( ship04 );
 			ship04.setGamePlayer( gp2 );
+			shiprepo.save( ship04 );
+
 
 			Ship ship05 = new Ship();
 			ship05.setType(Ship.Type.PATROL_BOAT);
 			ship05.setLocations( Arrays.asList( new String[] {"F1", "F2"}));
-			shiprepo.save( ship05 );
 			ship05.setGamePlayer( gp2 );
+			shiprepo.save( ship05 );
+
 
 
 
 			GamePlayer gp3 = new GamePlayer( g2, p1 );
+			gameplayerrepo.save( gp3 );
+
 
 			Ship ship06 = new Ship();
 			ship06.setType(Ship.Type.DESTROYER);
 			ship06.setLocations( Arrays.asList( new String[] {"B5", "C5", "D5"}));
-			shiprepo.save( ship06 );
 			ship06.setGamePlayer( gp3 );
+			shiprepo.save( ship06 );
+
 
 			Ship ship07 = new Ship();
 			ship07.setType(Ship.Type.PATROL_BOAT);
 			ship07.setLocations( Arrays.asList( new String[] {"C6", "C7"}));
-			shiprepo.save( ship07 );
 			ship07.setGamePlayer( gp3 );
+			shiprepo.save( ship07 );
 
-			gameplayerrepo.save( gp3 );
+
 
 
 
 			GamePlayer gp4 = new GamePlayer( g2, p2 );
+			gameplayerrepo.save( gp4 );
+
 
 			Ship ship08 = new Ship();
 			ship08.setType(Ship.Type.SUBMARINE);
 			ship08.setLocations( Arrays.asList( new String[] {"A2", "A3", "A4"}));
-			shiprepo.save( ship08 );
 			ship08.setGamePlayer( gp4 );
+			shiprepo.save( ship08 );
+
 
 			Ship ship09 = new Ship();
 			ship09.setType(Ship.Type.PATROL_BOAT);
 			ship09.setLocations( Arrays.asList( new String[] {"G6", "H6"}));
-			shiprepo.save( ship09 );
 			ship07.setGamePlayer( gp4 );
+			shiprepo.save( ship09 );
+
 
 			Ship ship10 = new Ship();
 			ship10.setType(Ship.Type.DESTROYER);
 			ship10.setLocations( Arrays.asList( new String[] {"B5", "C5", "D5"}));
-			shiprepo.save( ship10 );
 			ship10.setGamePlayer( gp4 );
+			shiprepo.save( ship10 );
+
 
 			Ship ship11 = new Ship();
 			ship11.setType(Ship.Type.PATROL_BOAT);
 			ship11.setLocations( Arrays.asList( new String[] {"C6", "C7"}));
-			shiprepo.save( ship11 );
 			ship11.setGamePlayer( gp4 );
+			shiprepo.save( ship11 );
 
-
-			gameplayerrepo.save( gp4 );
 
 
 
 			GamePlayer gp5 = new GamePlayer( g3, p3 );
+			gameplayerrepo.save( gp5 );
 
 			Ship ship12 = new Ship();
 			ship12.setType(Ship.Type.SUBMARINE);
 			ship12.setLocations( Arrays.asList( new String[] {"A2", "A3", "A4"}));
-			shiprepo.save( ship12 );
 			ship12.setGamePlayer( gp5 );
+			shiprepo.save( ship12 );
+
 
 			Ship ship13 = new Ship();
 			ship13.setType(Ship.Type.PATROL_BOAT);
 			ship13.setLocations( Arrays.asList( new String[] {"G6", "H6"}));
-			shiprepo.save( ship13 );
 			ship13.setGamePlayer( gp5 );
-
-			gameplayerrepo.save( gp5 );
-
+			shiprepo.save( ship13 );
 
 
-//			gameplayerrepo.save( new GamePlayer( g3, p4 ) );
-//			gameplayerrepo.save( new GamePlayer( g4, p1 ) );
+
+
 
 
 			GamePlayer gp6 = new GamePlayer( g4, p2 );
+			gameplayerrepo.save( gp6 );
+
 
 			Ship ship14 = new Ship();
 			ship14.setType(Ship.Type.DESTROYER);
 			ship13.setLocations( Arrays.asList( new String[] {"B5", "C5", "D5"}));
-			shiprepo.save( ship14 );
 			ship14.setGamePlayer( gp6 );
+			shiprepo.save( ship14 );
+
 
 			Ship ship15 = new Ship();
 			ship15.setType(Ship.Type.PATROL_BOAT);
 			ship15.setLocations( Arrays.asList( new String[] {"C6", "C7"}));
-			shiprepo.save( ship15 );
 			ship15.setGamePlayer( gp6 );
+			shiprepo.save( ship15 );
 
-			gameplayerrepo.save( gp6 );
+
 
 
 			GamePlayer gp7 = new GamePlayer( g4, p1 );
+			gameplayerrepo.save( gp7 );
 
 			Ship ship16 = new Ship();
 			ship16.setType(Ship.Type.SUBMARINE);
 			ship16.setLocations( Arrays.asList( new String[] {"A2", "A3", "A4"}));
-			shiprepo.save( ship16 );
 			ship16.setGamePlayer( gp7 );
+			shiprepo.save( ship16 );
+
 
 			Ship ship17 = new Ship();
 			ship17.setType(Ship.Type.PATROL_BOAT);
 			ship17.setLocations( Arrays.asList( new String[] {"G6", "H6"}));
-			shiprepo.save( ship17 );
 			ship17.setGamePlayer( gp7 );
+			shiprepo.save( ship17 );
 
-			gameplayerrepo.save( gp7 );
+
 
 
 			GamePlayer gp8 = new GamePlayer( g5, p3 );
+			gameplayerrepo.save( gp8 );
+
 
 			Ship ship18 = new Ship();
 			ship18.setType(Ship.Type.DESTROYER);
 			ship18.setLocations( Arrays.asList( new String[] {"B5", "C5", "D5"}));
-			shiprepo.save( ship18 );
 			ship18.setGamePlayer( gp8 );
+			shiprepo.save( ship18 );
+
 
 			Ship ship19 = new Ship();
 			ship19.setType(Ship.Type.PATROL_BOAT);
 			ship19.setLocations( Arrays.asList( new String[] {"C6", "C7"}));
-			shiprepo.save( ship19 );
 			ship19.setGamePlayer( gp8 );
-
-			gameplayerrepo.save( gp8 );
-
-
-//			gameplayerrepo.save( new GamePlayer( g5, p1 ) );
-//			gameplayerrepo.save( new GamePlayer( g6, p4 ) );
+			shiprepo.save( ship19 );
 
 
-			// create ships - game 1
+
 
 
 		};
