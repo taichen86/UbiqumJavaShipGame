@@ -27,8 +27,8 @@ var vm = new Vue({
     el: '#vue-instance',
     data: {
         games: [],
-        rows: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        columns: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
+        rows: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
+        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         gameplayerID: 0,
         gameplayers: [],
         ships: []
