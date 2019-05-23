@@ -3,37 +3,18 @@ package com.codeoftheweb.salvo;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Ship {
+public class Salvo {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
-    public long getShipID(){ return id; }
-
-    enum Type {
-        CARRIER,
-        BATTLESHIP,
-        SUBMARINE,
-        DESTROYER,
-        PATROL_BOAT
-    };
-
-    private Type type;
-    public void setType(Type type){
-        this.type = type;
-    }
-
-    public String getType(){ return type.name(); }
-
+    public long getSalvoID(){ return id; }
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="gameplayer_id")
@@ -51,8 +32,15 @@ public class Ship {
     }
 
 
-    public Ship(){ };
+    private int turnNumber;
+    public void setTurnNumber(int number){ turnNumber = number; }
+    public int getTurnNumber(){ return turnNumber; }
 
+    public Salvo(){}
 
+    public Salvo( int turn, GamePlayer gp ){
+        setTurnNumber( turn );
+        setGamePlayer( gp );
+    }
 
 }

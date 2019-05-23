@@ -21,7 +21,8 @@ public class SalvoApplication {
 	public CommandLineRunner initData(PlayerRepository playerrepo,
 									  GameRepository gamerepo,
 									  GamePlayerRepository gameplayerrepo,
-									  ShipRepository shiprepo) {
+									  ShipRepository shiprepo,
+									  SalvoRepository salvorepo) {
 		return (args) -> {
 
 			// create players
@@ -53,8 +54,9 @@ public class SalvoApplication {
 			gamerepo.save( g5 );
 			gamerepo.save( g6 );
 
-			// create gameplayers with ships
+			// create gameplayers with ships and salvoes
 
+			// ---- GAMEPLAYER1 GAME1 JACK BAUER --- //
 			GamePlayer gp1 = new GamePlayer( g1, p1 );
 			gameplayerrepo.save( gp1 );
 
@@ -64,20 +66,20 @@ public class SalvoApplication {
 			ship01.setGamePlayer( gp1 );
 			shiprepo.save( ship01 );
 
-
-
 			Ship ship02 = new Ship();
 			ship02.setType(Ship.Type.SUBMARINE);
 			ship02.setLocations( Arrays.asList( new String[] {"E1", "F1", "G1"}));
 			ship02.setGamePlayer( gp1 );
 			shiprepo.save( ship02 );
 
-
 			Ship ship03 = new Ship();
 			ship03.setType(Ship.Type.PATROL_BOAT);
 			ship03.setLocations( Arrays.asList( new String[] {"B4", "B5"}));
 			ship03.setGamePlayer( gp1 );
 			shiprepo.save( ship03 );
+
+
+			Salvo salvo01 = new Salvo( 1, gp1 );
 
 
 
