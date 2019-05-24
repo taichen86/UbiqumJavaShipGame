@@ -79,7 +79,8 @@ public class SalvoApplication {
 			shiprepo.save( ship03 );
 
 
-			Salvo salvo01 = new Salvo( 1, gp1 );
+			Salvo salvo01 = new Salvo( 1, gp1, Arrays.asList( new String[]{"B5", "C5", "F1" } ) );
+
 
 
 

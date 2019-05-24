@@ -38,9 +38,10 @@ public class Salvo {
 
     public Salvo(){}
 
-    public Salvo( int turn, GamePlayer gp ){
+    public Salvo( int turn, GamePlayer gp, List<String> locations ){
         setTurnNumber( turn );
         setGamePlayer( gp );
+        setLocations( locations );
     }
 
 }
