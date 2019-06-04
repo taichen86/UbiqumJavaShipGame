@@ -1,12 +1,15 @@
 package com.codeoftheweb.salvo;
 
+import jdk.nashorn.internal.runtime.options.Option;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class GamePlayer {
@@ -52,6 +55,7 @@ public class GamePlayer {
     public Set<Ship> getShips(){ return ships; }
     public void addShip(Ship ship){
         ship.setGamePlayer( this );
+        System.out.println( "add ship " + ship );
         ships.add( ship );
     }
 
@@ -59,6 +63,14 @@ public class GamePlayer {
     public void addSalvo(Salvo salvo){
         salvo.setGamePlayer( this );
         salvoes.add( salvo );
+    }
+
+    public Score getScore(){
+        return game.getScores()
+                .stream()
+                .filter( score ->
+                        score.getPlayerID() == player.getPlayerID() )
+                .findFirst().orElse(null);
     }
 
 

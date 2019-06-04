@@ -22,7 +22,8 @@ public class SalvoApplication {
 									  GameRepository gamerepo,
 									  GamePlayerRepository gameplayerrepo,
 									  ShipRepository shiprepo,
-									  SalvoRepository salvorepo) {
+									  SalvoRepository salvorepo,
+									  ScoreRepository scorerepo) {
 		return (args) -> {
 
 			// create players
@@ -287,7 +288,25 @@ public class SalvoApplication {
 
 
 
+			// add scores
+			Score score01 = new Score( g1, p1, 1.0f , "02-17-2018 15:50:15" );
+			scorerepo.save( score01 );
+			Score score02 = new Score( g1, p2, 0.0f , "02-17-2018 15:50:15" );
+			scorerepo.save( score02 );
+			Score score03 = new Score( g2, p1, 0.5f , "02-17-2018 16:50:15" );
+			scorerepo.save( score03 );
+			Score score04 = new Score( g2, p2, 0.5f , "02-17-2018 16:50:15" );
+			scorerepo.save( score04 );
 
+			Score score05 = new Score( g3, p2, 1.0f , "02-17-2018 17:50:15" );
+			scorerepo.save( score05 );
+			Score score06 = new Score( g3, p3, 0.0f , "02-17-2018 17:50:15" );
+			scorerepo.save( score06 );
+
+			Score score07 = new Score( g4, p2, 0.5f , "02-17-2018 18:50:15" );
+			scorerepo.save( score07 );
+			Score score08 = new Score( g4, p1, 0.5f , "02-17-2018 18:50:15" );
+			scorerepo.save( score08 );
 
 		};
 	}

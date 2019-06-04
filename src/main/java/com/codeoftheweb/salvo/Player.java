@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 import java.util.List;
@@ -72,6 +73,14 @@ public class Player {
     @JsonIgnore
     public List<Game> getGames() {
         return gameplayers.stream().map(sub -> sub.getGame()).collect(toList()); // ???
+    }
+
+    @OneToMany(mappedBy="player", fetch=FetchType.EAGER)
+    private Set<Score> scores = new HashSet<Score>();
+    public Set<Score> getScores(){ return scores; }
+    public void addScore(Score score){
+        score.setPlayer( this );
+        scores.add( score );
     }
 
 }

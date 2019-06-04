@@ -38,15 +38,12 @@ public class SalvoController {
         List<Object> allSalvoes = new LinkedList<>();
         Set<GamePlayer> gps = gameplayer.getGame().getGamePlayers();
         gps.forEach( gp -> {
-        //    System.out.println( "gameplayer --->" + gp.getSalvoes() );
             Set<Salvo> salvoes = gp.getSalvoes();
             salvoes.forEach( salvo -> {
-            //    System.out.println( salvo );
                 allSalvoes.add( makeSalvoDTO( salvo )  );
             } );
             //  dto.put( "salvoes", gameplayer.getSalvoes().stream().map( salvo -> makeSalvoDTO( salvo ) ).collect(Collectors.toList()) );
         } );
-        //    System.out.println( salvos );
         dto.put( "salvoes", allSalvoes );
 
         return dto;
@@ -75,6 +72,9 @@ public class SalvoController {
                                     .stream()
                                     .map( gp -> makeGamePlayerDTO( gp ) )
                                     .collect((Collectors.toList())));
+//        dto.put("scores", game.getScores().stream()
+//                                            .map( score -> makeScoreDTO( score ))
+//                                            .collect(Collectors.toList()));
         return dto;
     }
 
@@ -97,6 +97,8 @@ public class SalvoController {
         Map<String,Object> dto = new LinkedHashMap<String, Object>();
         dto.put("id", gameplayer.getGamePlayerID());
         dto.put("player", makePlayerDTO( gameplayer.getPlayer() ) );
+        // do score here
+        dto.put( "score", makeScoreDTO( gameplayer.getScore() ));
         return dto;
     }
 
@@ -104,6 +106,17 @@ public class SalvoController {
         Map<String,Object> dto = new LinkedHashMap<String, Object>();
         dto.put( "id", player.getPlayerID() );
         dto.put( "email", player.getUsername() );
+        return dto;
+    }
+
+    private Map<String, Object> makeScoreDTO(Score score){
+        if( score == null ){ return null; }
+        Map<String,Object> dto = new LinkedHashMap<>();
+        dto.put("id", score.getID());
+        dto.put("gameID", score.getGame().getGameID());
+        dto.put("playerID", score.getPlayer().getPlayerID());
+        dto.put( "score", score.getScore() );
+        dto.put( "finishDate", score.getFinishDate() );
         return dto;
     }
 

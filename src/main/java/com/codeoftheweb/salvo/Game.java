@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -61,6 +62,14 @@ public class Game {
 
     public List<Player> getPlayers() {
         return gameplayers.stream().map(gp -> gp.getPlayer()).collect(toList()); // ???
+    }
+
+    @OneToMany(mappedBy="game", fetch=FetchType.EAGER)
+    private Set<Score> scores = new HashSet<Score>();
+    public Set<Score> getScores(){ return scores; }
+    public void addScore(Score score){ // this is never called
+        score.setGame( this );
+        scores.add( score );
     }
 
 }
