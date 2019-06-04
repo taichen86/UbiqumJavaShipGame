@@ -16,14 +16,22 @@ public class SalvoController {
     private GameRepository gameRepository;
     @Autowired
     private GamePlayerRepository gamePlayerRepository;
+    @Autowired PlayerRepository playerRepository;
 
     @RequestMapping("/games")
     public List<Object> getAllGames(){
- //       System.out.println("hello");
-//        List<Object> gids = gameRepository.findAll().stream().map( g -> g.getGameID()).collect(Collectors.toList());
-//        System.out.println( gids );
-
         return gameRepository.findAll().stream().map( g -> makeGameDTO(g) ).collect(Collectors.toList());
+    }
+
+
+    @RequestMapping("/leaderboard")
+    public Map<String, Object> showLeaderboard(){
+        Map<String, Object> dto = new LinkedHashMap<>();
+        List<Object> players = new LinkedList<>();
+
+        playerRepository.findAll().stream().forEach( player -> players.add( makeLeaderboardDTO( player) ));
+        dto.put( "players", players );
+        return dto;
     }
 
     @RequestMapping("/game_view/{id}")
@@ -112,13 +120,21 @@ public class SalvoController {
     private Map<String, Object> makeScoreDTO(Score score){
         if( score == null ){ return null; }
         Map<String,Object> dto = new LinkedHashMap<>();
-        dto.put("id", score.getID());
-        dto.put("gameID", score.getGame().getGameID());
-        dto.put("playerID", score.getPlayer().getPlayerID());
+//        dto.put("id", score.getID());
+//        dto.put("gameID", score.getGame().getGameID());
+//        dto.put("playerID", score.getPlayer().getPlayerID());
         dto.put( "score", score.getScore() );
-        dto.put( "finishDate", score.getFinishDate() );
+//        dto.put( "finishDate", score.getFinishDate() );
         return dto;
     }
+
+    private Map<String,Object> makeLeaderboardDTO(Player player){
+        Map<String,Object> dto = new LinkedHashMap<>();
+        dto.put( "email", player.getUsername() );
+        dto.put( "scores", player.getScores().stream().map( score -> makeScoreDTO(score) ).collect(Collectors.toList()) );
+        return dto;
+    }
+
 
 
 

@@ -12,11 +12,15 @@ var vm = new Vue({
         gameplayers: [],
         ships: [],
         shipLocations: [],
-        salvoes: []
+        salvoes: [],
+        leaderboardData: {},
+        leaderboardDisplayData: [{}] // show this
+
+
     }
 })
 
-getGameView();
+// getGameView();
 
 function getGameView()
 {
@@ -119,4 +123,50 @@ function paramObj(search) {
 
 
 
-//----- plain javascript -----//
+//----- leaderboard -----//
+getLeaderboardData();
+function getLeaderboardData(){
+    console.log( "doing leaderboard..." );
+    const url = "http://localhost:8080/api/leaderboard";
+    fetch( url ).then( function(response){
+        console.log( "got response: " + response );
+        if( response.ok ){
+            return response.json();
+        }
+    }).then( function(json){
+        console.log( "got json: " + json);
+        console.log( json );
+        vm.leaderboardData = json;
+        console.log( vm.leaderboardData );
+        vm.leaderboardData.players.forEach( player => {
+            console.log( "doing players ... " + player );
+            let total =0;
+            let wins =0;
+            let losses = 0;
+            let ties = 0;
+            
+             player.scores.forEach( score => {
+                 if( score.score > 0.5 ){
+                    wins++;
+                 }else if( score.score > 0.0 ){
+                    ties++;
+                 }else{
+                     losses++;
+                 }
+                 total = total + score.score;
+             } );
+             const data = { 
+                email: player.email,
+                total: total,
+                wins: wins,
+                losses: losses,
+                ties: ties
+             }
+             console.log( data );
+
+             vm.leaderboardDisplayData.push( data );
+        } );
+
+    })
+
+}
