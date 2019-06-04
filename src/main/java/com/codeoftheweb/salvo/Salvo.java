@@ -19,6 +19,7 @@ public class Salvo {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="gameplayer_id")
     private GamePlayer gameplayer;
+    public GamePlayer getGamePlayer(){ return gameplayer; }
     public void setGamePlayer(GamePlayer gameplayer){
         this.gameplayer = gameplayer;
     }

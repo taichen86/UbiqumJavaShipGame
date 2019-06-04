@@ -30,8 +30,11 @@ var vm = new Vue({
         rows: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         gameplayerID: 0,
+        gameID: 0,
         gameplayers: [],
-        ships: []
+        ships: [],
+        shipLocations: [],
+        salvoes: []
     }
 })
 
@@ -58,6 +61,11 @@ function getGameView()
         console.log( "got json: " + json );
          var data = json;
         console.log( data );
+
+        vm.gameID = data.id;
+        console.log( "game id: " + vm.gameID );
+
+
         data.gameplayers.forEach( gp => {
             console.log( gp );
             vm.gameplayers.push( gp );
@@ -67,7 +75,15 @@ function getGameView()
              vm.ships.push( ship );
          }); 
          console.log( vm.ships );
+
+         data.salvoes.forEach( salvo => {
+            console.log( salvo );
+            vm.salvoes.push( salvo );
+         });
+         console.log( vm.salvoes );
+
          colorInShipCells();
+         colorInSalvoCells();
 
 
     }).catch( function( error ){
@@ -80,7 +96,30 @@ function colorInShipCells(){
     vm.ships.forEach( ship => {
         ship.locations.forEach( location => {
             console.log( "location: " + location );
+            vm.shipLocations.push( location );
             document.getElementById( location ).style.backgroundColor = "blue";
+        });
+    });
+    console.log( "all ship locs: " + vm.shipLocations );
+}
+
+function colorInSalvoCells(){
+    console.log( "color in salvo cells " + vm.salvoes );
+    vm.salvoes.forEach( salvo => {
+        salvo.locations.forEach( location => {
+            const id = "s"+location;
+            const cell = document.getElementById( id );
+            cell.appendChild( document.createTextNode( salvo.turn ) );
+            cell.style.backgroundColor = cell.style.backgroundColor = "green";
+
+            // check if hit by opponent
+            if( salvo.player != vm.gameplayerID ){
+                cell.style.backgroundColor = "yellow";
+                if( vm.shipLocations.includes( location )){
+                    cell.style.backgroundColor = "orange";
+                }
+            }
+        
         });
     });
 }
@@ -95,7 +134,6 @@ function paramObj(search) {
   
     return obj;
   }
-
 
 
 

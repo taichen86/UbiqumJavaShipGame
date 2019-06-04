@@ -5,9 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -21,7 +19,7 @@ public class SalvoController {
 
     @RequestMapping("/games")
     public List<Object> getAllGames(){
-        System.out.println("hello");
+ //       System.out.println("hello");
 //        List<Object> gids = gameRepository.findAll().stream().map( g -> g.getGameID()).collect(Collectors.toList());
 //        System.out.println( gids );
 
@@ -31,10 +29,26 @@ public class SalvoController {
     @RequestMapping("/game_view/{id}")
     public Map<String, Object> showGameView(@PathVariable("id") long id ) {
         System.out.println("do game view for gameplayer " + id);
+
         GamePlayer gameplayer = gamePlayerRepository.findById( id ).get();
         Map<String, Object> dto = makeGameDTO( gameplayer.getGame() );
         System.out.println( gameplayer.getShips() );
         dto.put( "ships", gameplayer.getShips().stream().map( ship -> makeShipDTO( ship ) ).collect(Collectors.toList()) );
+
+        List<Object> allSalvoes = new LinkedList<>();
+        Set<GamePlayer> gps = gameplayer.getGame().getGamePlayers();
+        gps.forEach( gp -> {
+        //    System.out.println( "gameplayer --->" + gp.getSalvoes() );
+            Set<Salvo> salvoes = gp.getSalvoes();
+            salvoes.forEach( salvo -> {
+            //    System.out.println( salvo );
+                allSalvoes.add( makeSalvoDTO( salvo )  );
+            } );
+            //  dto.put( "salvoes", gameplayer.getSalvoes().stream().map( salvo -> makeSalvoDTO( salvo ) ).collect(Collectors.toList()) );
+        } );
+        //    System.out.println( salvos );
+        dto.put( "salvoes", allSalvoes );
+
         return dto;
     }
 
@@ -42,6 +56,14 @@ public class SalvoController {
         Map<String, Object> dto = new LinkedHashMap<>();
         dto.put( "type", ship.getType() );
         dto.put( "locations", ship.getLocations() );
+        return dto;
+    }
+
+    private Map<String, Object> makeSalvoDTO( Salvo salvo ){
+        Map<String, Object> dto = new LinkedHashMap<>();
+        dto.put( "player", salvo.getGamePlayer().getPlayer().getPlayerID() );
+        dto.put( "turn", salvo.getTurnNumber() );
+        dto.put( "locations", salvo.getLocations() );
         return dto;
     }
 
@@ -54,6 +76,10 @@ public class SalvoController {
                                     .map( gp -> makeGamePlayerDTO( gp ) )
                                     .collect((Collectors.toList())));
         return dto;
+    }
+
+    private Set<GamePlayer> getGamePlayers(Game game){
+        return game.getGamePlayers();
     }
 
     private Map<String, Object> makeGameViewDTO( Game game ){

@@ -29,7 +29,7 @@ public class SalvoApplication {
 			Player p1 = new Player("j.bauer@ctu.gov");
 			Player p2 = new Player("c.obrian@ctu.gov");
 			Player p3 = new Player("t.almeida@ctu.gov");
-			Player p4 = new Player("d.palmer@whitehouse.gov");
+			Player p4 = new Player("kim_bauer@gmail.gov");
 			System.out.println( "do... " + p1 );
 
 
@@ -45,6 +45,8 @@ public class SalvoApplication {
 			Game g4 = new Game( "02-17-2018 18:20:15" );
 			Game g5 = new Game( "02-17-2018 19:20:15" );
 			Game g6 = new Game( "02-17-2018 20:20:15" );
+			Game g7 = new Game( "02-17-2018 21:20:15" );
+			Game g8 = new Game( "02-17-2018 22:20:15" );
 
 
 			gamerepo.save( g1 );
@@ -53,6 +55,8 @@ public class SalvoApplication {
 			gamerepo.save( g4 );
 			gamerepo.save( g5 );
 			gamerepo.save( g6 );
+			gamerepo.save( g7 );
+			gamerepo.save( g8 );
 
 			// create gameplayers with ships and salvoes
 
@@ -80,7 +84,9 @@ public class SalvoApplication {
 
 
 			Salvo salvo01 = new Salvo( 1, gp1, Arrays.asList( new String[]{"B5", "C5", "F1" } ) );
-
+			Salvo salvo02 = new Salvo( 2, gp1, Arrays.asList( new String[]{"F2", "D5" } ) );
+			salvorepo.save( salvo01 );
+			salvorepo.save( salvo02 );
 
 
 
@@ -102,6 +108,11 @@ public class SalvoApplication {
 			shiprepo.save( ship05 );
 
 
+			Salvo salvo03 = new Salvo( 1, gp2, Arrays.asList( new String[]{ "B4", "B5", "B6" } ) );
+			Salvo salvo04 = new Salvo( 2, gp2, Arrays.asList( new String[]{ "E1", "H3", "A2" } ) );
+			salvorepo.save( salvo03 );
+			salvorepo.save( salvo04 );
+
 
 
 			GamePlayer gp3 = new GamePlayer( g2, p1 );
@@ -122,6 +133,10 @@ public class SalvoApplication {
 			shiprepo.save( ship07 );
 
 
+			Salvo salvo05 = new Salvo( 1, gp3, Arrays.asList( new String[]{ "A2", "A4", "G6" } ) );
+			Salvo salvo06 = new Salvo( 2, gp3, Arrays.asList( new String[]{ "A3", "H6" } ) );
+			salvorepo.save( salvo05 );
+			salvorepo.save( salvo06 );
 
 
 
@@ -157,84 +172,118 @@ public class SalvoApplication {
 			shiprepo.save( ship11 );
 
 
+			Salvo salvo07 = new Salvo( 1, gp4, Arrays.asList( new String[]{ "B5", "D5", "C7" } ) );
+			Salvo salvo08 = new Salvo( 2, gp4, Arrays.asList( new String[]{ "C5", "C6" } ) );
+			salvorepo.save( salvo07 );
+			salvorepo.save( salvo08 );
 
 
-			GamePlayer gp5 = new GamePlayer( g3, p3 );
+			GamePlayer gp5 = new GamePlayer( g3, p2 );
 			gameplayerrepo.save( gp5 );
+
+			// TODO add ships
+			Salvo salvo09 = new Salvo( 1, gp5, Arrays.asList( new String[]{ "G6", "H6", "A4" } ) );
+			Salvo salvo10 = new Salvo( 2, gp5, Arrays.asList( new String[]{ "A2", "A3", "D8" } ) );
+			salvorepo.save( salvo09 );
+			salvorepo.save( salvo10 );
+
+
+			GamePlayer gp6 = new GamePlayer( g3, p3 );
+			gameplayerrepo.save( gp6 );
 
 			Ship ship12 = new Ship();
 			ship12.setType(Ship.Type.SUBMARINE);
 			ship12.setLocations( Arrays.asList( new String[] {"A2", "A3", "A4"}));
-			ship12.setGamePlayer( gp5 );
+			ship12.setGamePlayer( gp6 );
 			shiprepo.save( ship12 );
 
 
 			Ship ship13 = new Ship();
 			ship13.setType(Ship.Type.PATROL_BOAT);
 			ship13.setLocations( Arrays.asList( new String[] {"G6", "H6"}));
-			ship13.setGamePlayer( gp5 );
+			ship13.setGamePlayer( gp6 );
 			shiprepo.save( ship13 );
 
 
+			Salvo salvo11 = new Salvo( 1, gp6, Arrays.asList( new String[]{ "H1", "H2", "H3" } ) );
+			Salvo salvo12 = new Salvo( 2, gp6, Arrays.asList( new String[]{ "E1", "F2", "G3" } ) );
+			salvorepo.save( salvo11 );
+			salvorepo.save( salvo12 );
 
 
 
 
-			GamePlayer gp6 = new GamePlayer( g4, p2 );
-			gameplayerrepo.save( gp6 );
+			GamePlayer gp7 = new GamePlayer( g4, p2 );
+			gameplayerrepo.save( gp7 );
 
 
 			Ship ship14 = new Ship();
 			ship14.setType(Ship.Type.DESTROYER);
 			ship13.setLocations( Arrays.asList( new String[] {"B5", "C5", "D5"}));
-			ship14.setGamePlayer( gp6 );
+			ship14.setGamePlayer( gp7 );
 			shiprepo.save( ship14 );
 
 
 			Ship ship15 = new Ship();
 			ship15.setType(Ship.Type.PATROL_BOAT);
 			ship15.setLocations( Arrays.asList( new String[] {"C6", "C7"}));
-			ship15.setGamePlayer( gp6 );
+			ship15.setGamePlayer( gp7 );
 			shiprepo.save( ship15 );
 
+			Salvo salvo13 = new Salvo( 1, gp7, Arrays.asList( new String[]{ "A3", "A4", "F7" } ) );
+			Salvo salvo14 = new Salvo( 2, gp7, Arrays.asList( new String[]{ "A2", "G6", "H6" } ) );
+			salvorepo.save( salvo13 );
+			salvorepo.save( salvo14 );
 
 
 
-			GamePlayer gp7 = new GamePlayer( g4, p1 );
-			gameplayerrepo.save( gp7 );
+
+
+			GamePlayer gp8 = new GamePlayer( g4, p1 );
+			gameplayerrepo.save( gp8 );
 
 			Ship ship16 = new Ship();
 			ship16.setType(Ship.Type.SUBMARINE);
 			ship16.setLocations( Arrays.asList( new String[] {"A2", "A3", "A4"}));
-			ship16.setGamePlayer( gp7 );
+			ship16.setGamePlayer( gp8 );
 			shiprepo.save( ship16 );
 
 
 			Ship ship17 = new Ship();
 			ship17.setType(Ship.Type.PATROL_BOAT);
 			ship17.setLocations( Arrays.asList( new String[] {"G6", "H6"}));
-			ship17.setGamePlayer( gp7 );
+			ship17.setGamePlayer( gp8 );
 			shiprepo.save( ship17 );
 
+			Salvo salvo15 = new Salvo( 1, gp8, Arrays.asList( new String[]{ "B5", "C6", "H1" } ) );
+			Salvo salvo16 = new Salvo( 2, gp8, Arrays.asList( new String[]{ "C5", "C7", "D5" } ) );
+			salvorepo.save( salvo15 );
+			salvorepo.save( salvo16 );
 
 
 
-			GamePlayer gp8 = new GamePlayer( g5, p3 );
-			gameplayerrepo.save( gp8 );
+
+			GamePlayer gp9 = new GamePlayer( g5, p3 );
+			gameplayerrepo.save( gp9 );
 
 
 			Ship ship18 = new Ship();
 			ship18.setType(Ship.Type.DESTROYER);
 			ship18.setLocations( Arrays.asList( new String[] {"B5", "C5", "D5"}));
-			ship18.setGamePlayer( gp8 );
+			ship18.setGamePlayer( gp9 );
 			shiprepo.save( ship18 );
 
 
 			Ship ship19 = new Ship();
 			ship19.setType(Ship.Type.PATROL_BOAT);
 			ship19.setLocations( Arrays.asList( new String[] {"C6", "C7"}));
-			ship19.setGamePlayer( gp8 );
+			ship19.setGamePlayer( gp9 );
 			shiprepo.save( ship19 );
+
+			Salvo salvo17 = new Salvo( 1, gp9, Arrays.asList( new String[]{ "A1", "A2", "A3" } ) );
+			Salvo salvo18 = new Salvo( 2, gp9, Arrays.asList( new String[]{ "G6", "G7", "G8" } ) );
+			salvorepo.save( salvo17 );
+			salvorepo.save( salvo18 );
 
 
 
