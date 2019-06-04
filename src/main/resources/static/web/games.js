@@ -1,27 +1,4 @@
-// function getListOfGames(){
-//     console.log( "getting list of games... " );
-//     fetch("/api/games" ).then( function(response){
-//         console.log( "got response: " + response );
-//         if( response.ok ){
-//             return response.json();
-//         }
 
-//     } ).then( function( json ){
-//         console.log( "got json: " + json );
-//          var data = json;
-//         console.log( data );
-//         data.forEach( game => {
-//            console.log( game );
-//            vm.games.push( game );
-//         });
-
-
-//     console.log( vm.games );
-//     }).catch( function( error ){
-//         console.log( "error: " + error );
-//     })
-// }
-// getListOfGames();
 
 var vm = new Vue({
     el: '#vue-instance',
@@ -31,6 +8,7 @@ var vm = new Vue({
         columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         gameplayerID: 0,
         gameID: 0,
+        playerID: 0, 
         gameplayers: [],
         ships: [],
         shipLocations: [],
@@ -69,6 +47,10 @@ function getGameView()
         data.gameplayers.forEach( gp => {
             console.log( gp );
             vm.gameplayers.push( gp );
+            if( gp.id == vm.gameplayerID ){
+                vm.playerID = gp.player.id;
+                console.log( "player ID ---> " + vm.playerID );
+            }
          });      
          data.ships.forEach( ship => {
              console.log( ship );
@@ -113,7 +95,7 @@ function colorInSalvoCells(){
             cell.style.backgroundColor = cell.style.backgroundColor = "green";
 
             // check if hit by opponent
-            if( salvo.player != vm.gameplayerID ){
+            if( salvo.player != vm.playerID ){
                 cell.style.backgroundColor = "yellow";
                 if( vm.shipLocations.includes( location )){
                     cell.style.backgroundColor = "orange";
